@@ -1,0 +1,11 @@
+pytest
+pytest-mock
+pytest-cov
+flake8
+tox
+bumpversion
+twine
+lambda_setuptools
+
+boto3
+python-dateutil

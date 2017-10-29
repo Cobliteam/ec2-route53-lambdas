@@ -1,0 +1,25 @@
+stacker_bucket: ${namespace}-stacker
+sys_path: ./
+
+pre_build:
+  - path: stacker.hooks.aws_lambda.upload_lambda_functions
+    required: true
+    data_key: lambda
+    args:
+      functions:
+        Ec2Route53:
+          path: ../src
+          include: ['*.py']
+
+stacks:
+  - name: ec2-dns
+    class_path: blueprints.ec2_dns.Ec2Dns
+    enabled: true
+    variables:
+      Code: ${hook_data lambda::Ec2Route53}
+      HostedZoneID: ${route53_private_zone_id}
+      TargetVPCIDs: ${ec2_dns_vpcs}
+      TargetDomains: ${ec2_dns_domains}
+      RecordTTL: 60
+      MemorySize: 128
+      Timeout: 120
