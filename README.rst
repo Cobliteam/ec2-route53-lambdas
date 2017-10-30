@@ -25,11 +25,21 @@ and edit it with your own settings:
     ec2_dns_domains: i.prod.aws.example.com,i.dev.aws.example.com
 
 Then run ``cloudformation/deploy.sh`` after setting up your AWS credentials with
-environment variables (e.g. ``AWS_PROFILE``). The namespace will be used to
-create an S3 bucket and prefix the CloudFormation resource names. The VPCs and
-domains will be matched in the corresponding position in their list (separated
-by commas). So in the example above, the instances in ``vpc-11111111`` will
-have records created in ``i.prod.aws.example.com``.
+environment variables (e.g. ``AWS_PROFILE`` and ``AWS_DEFAULT_REGION``). The
+namespace will be used to create an S3 bucket and prefix the CloudFormation
+resource names. The VPCs and domains will be matched in the corresponding
+position in their list (separated by commas). So in the example above, the
+instances in ``vpc-11111111`` will have records created in
+``i.prod.aws.example.com``.
+
+When working with multiple regions, the stack can be deployed multiple times using
+different environment files by specifying all the ``stacker`` options:
+
+::
+
+    cd cloudformation
+    source venv/bin/activate
+    AWS_DEFAULT_REGION=us-east-1 stacker build -i -t us-east-1.env stack.yml
 
 
 EC2 Instances to Route53 synchronization
