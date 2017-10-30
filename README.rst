@@ -66,8 +66,8 @@ subscribed to without setting up CloudTrail.
 For each suitable instance, records will be created as follows (listed in BIND
 syntax, with the base domain implied)
 
-Instance ID
 
+Instance ID
     ::
 
         i-1111111111111111  IN  A  10.0.0.100

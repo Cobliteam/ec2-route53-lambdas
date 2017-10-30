@@ -1,10 +1,9 @@
 from troposphere import iam, events, awslambda, sns
-from troposphere import AWS_ACCOUNT_ID, GetAtt, Join, Ref
-from troposphere.awslambda import Code
+from troposphere import GetAtt, Ref
 from awacs.aws import Action, Allow, Policy, Statement
 from awacs.helpers.trust import get_lambda_assumerole_policy
 from stacker.blueprints.base import Blueprint
-from stacker.blueprints.variables.types import CFNNumber, TroposphereType
+from stacker.blueprints.variables.types import CFNNumber
 
 
 class LambdaBlueprint(Blueprint):
@@ -17,7 +16,7 @@ class LambdaBlueprint(Blueprint):
         },
         'MemorySize': {
             'type': CFNNumber,
-            'description': 'Amount of memory to allocate to the Lambda Function',
+            'description': 'Amount of memory to allocate to the Function',
             'default': '128',
             'allowed_values': awslambda.MEMORY_VALUES
         },

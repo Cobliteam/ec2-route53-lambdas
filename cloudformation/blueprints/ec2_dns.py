@@ -2,7 +2,7 @@ from troposphere import awslambda
 from troposphere import GetAtt, Ref, Join
 from stacker.blueprints.variables.types import \
     CFNCommaDelimitedList, CFNNumber, CFNString, EC2VPCIdList, \
-    Route53HostedZoneId, TroposphereType
+    Route53HostedZoneId
 
 from .base.awslambda import LambdaBlueprint
 
